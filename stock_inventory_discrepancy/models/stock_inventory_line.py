@@ -21,6 +21,8 @@ class StockInventoryLine(models.Model):
         digits=(3, 2),
         help="The discrepancy expressed in percent with theoretical quantity "
         "as basis",
+        group_operator="avg",
+        store=True,
     )
     discrepancy_threshold = fields.Float(
         string="Threshold (%)",
