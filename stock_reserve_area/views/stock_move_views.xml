@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_stock_move_operations" model="ir.ui.view">
+        <field name="name">stock.move.operations.form</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_stock_move_operations" />
+        <field name="arch" type="xml">
+            <field name="reserved_availability" position="after">
+                <field name="reserve_area_line_ids" invisible="1" />
+                <field
+                    name="area_reserved_availability"
+                    attrs="{'invisible': [('reserve_area_line_ids', '=', [])]}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_move_reserve_area_form" model="ir.ui.view">
+        <field name="name">stock.move.operations.reserve.area.form</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form" />
+        <field name="arch" type="xml">
+            <group name="linked_group" position="after">
+                <group name="reserve_area_lines" string="Area Reservations">
+                    <field name="reserve_area_line_ids" readonly="1">
+                        <tree>
+                            <field name="product_id" />
+                            <field name="reserve_area_id" />
+                            <field name="reserved_availability" />
+                            <field name="unreserved_qty" />
+                        </tree>
+                    </field>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
